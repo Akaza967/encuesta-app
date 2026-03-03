@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "921615471860",
+    "project_id": "encuestaapp-f9c2b",
+    "storage_bucket": "encuestaapp-f9c2b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921615471860:android:0f12c5c874c4020eb0baa1",
+        "android_client_info": {
+          "package_name": "com.jasheigghen.encuestaapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOs7OJjU5plQ2bmzMnya_3CYEhuPbXYCg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
