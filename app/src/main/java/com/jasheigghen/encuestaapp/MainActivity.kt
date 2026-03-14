@@ -87,7 +87,7 @@ fun LoginScreen(navController: NavController, auth: FirebaseAuth) {
                 Icons.Default.AccountCircle,
                 contentDescription = null,
                 modifier = Modifier.size(100.dp),
-                color = MaterialTheme.colorScheme.primary
+                tint = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(32.dp))
             Text(
