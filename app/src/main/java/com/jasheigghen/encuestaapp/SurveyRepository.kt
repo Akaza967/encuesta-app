@@ -10,10 +10,10 @@ class SurveyRepository {
 
     suspend fun getActiveSurveys(): List<Survey> {
         return try {
-            surveysCollection.whereEqualTo("active", true)
+            val snapshot = surveysCollection.whereEqualTo("active", true)
                 .get()
                 .await()
-                .toObjects(Survey::class.java)
+            snapshot.toObjects(Survey::class.java)
         } catch (e: Exception) {
             emptyList()
         }
@@ -30,7 +30,8 @@ class SurveyRepository {
     suspend fun createSurvey(survey: Survey) {
         try {
             val docRef = surveysCollection.document()
-            surveysCollection.document(docRef.id).set(survey.copy(id = docRef.id)).await()
+            val finalSurvey = survey.copy(id = docRef.id)
+            docRef.set(finalSurvey).await()
         } catch (e: Exception) {
             // Handle error
         }
@@ -38,12 +39,12 @@ class SurveyRepository {
 
     suspend fun getResults(surveyId: String): Map<Int, Int> {
         return try {
-            val votes = votesCollection.whereEqualTo("surveyId", surveyId)
+            val snapshot = votesCollection.whereEqualTo("surveyId", surveyId)
                 .get()
                 .await()
             
             val results = mutableMapOf<Int, Int>()
-            votes.forEach { doc ->
+            snapshot.documents.forEach { doc ->
                 val optionIndex = doc.getLong("selectedOptionIndex")?.toInt() ?: -1
                 if (optionIndex != -1) {
                     results[optionIndex] = results.getOrDefault(optionIndex, 0) + 1
